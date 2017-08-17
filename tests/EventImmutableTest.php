@@ -16,85 +16,85 @@ use PHPUnit\Framework\TestCase;
  */
 class EventImmutableTest extends TestCase
 {
-	/**
-	 * Object under tests.
-	 *
-	 * @var    EventImmutable
-	 *
-	 * @since  1.0
-	 */
-	private $instance;
+    /**
+     * Object under tests.
+     *
+     * @var    EventImmutable
+     *
+     * @since  1.0
+     */
+    private $instance;
 
-	/**
-	 * Test the constructor.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	public function test__construct()
-	{
-		$arguments = array('foo' => 'bar');
-		$event = new EventImmutable('test', $arguments);
+    /**
+     * Test the constructor.
+     *
+     * @return  void
+     *
+     * @since   1.0
+     */
+    public function test__construct()
+    {
+        $arguments = ['foo' => 'bar'];
+        $event     = new EventImmutable('test', $arguments);
 
-		$this->assertEquals('test', $event->getName());
-		$this->assertEquals($arguments, $event->getArguments());
-	}
+        $this->assertEquals('test', $event->getName());
+        $this->assertEquals($arguments, $event->getArguments());
+    }
 
-	/**
-	 * Test the constructor exception when calling it
-	 * on an already constructed object.
-	 *
-	 * @expectedException  \BadMethodCallException
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	public function test__constructException()
-	{
-		$this->instance->__construct('foo');
-	}
+    /**
+     * Test the constructor exception when calling it
+     * on an already constructed object.
+     *
+     * @expectedException  \BadMethodCallException
+     *
+     * @return  void
+     *
+     * @since   1.0
+     */
+    public function test__constructException()
+    {
+        $this->instance->__construct('foo');
+    }
 
-	/**
-	 * Test the offsetSet method.
-	 *
-	 * @expectedException  \BadMethodCallException
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	public function testOffsetSet()
-	{
-		$this->instance['foo'] = 'bar';
-	}
+    /**
+     * Test the offsetSet method.
+     *
+     * @expectedException  \BadMethodCallException
+     *
+     * @return  void
+     *
+     * @since   1.0
+     */
+    public function testOffsetSet()
+    {
+        $this->instance['foo'] = 'bar';
+    }
 
-	/**
-	 * Test the offsetUnset method.
-	 *
-	 * @expectedException  \BadMethodCallException
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	public function testOffsetUnSet()
-	{
-		unset($this->instance['foo']);
-	}
+    /**
+     * Test the offsetUnset method.
+     *
+     * @expectedException  \BadMethodCallException
+     *
+     * @return  void
+     *
+     * @since   1.0
+     */
+    public function testOffsetUnSet()
+    {
+        unset($this->instance['foo']);
+    }
 
-	/**
-	 * Sets up the fixture.
-	 *
-	 * This method is called before a test is executed.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	protected function setUp()
-	{
-		$this->instance = new EventImmutable('test');
-	}
+    /**
+     * Sets up the fixture.
+     *
+     * This method is called before a test is executed.
+     *
+     * @return  void
+     *
+     * @since   1.0
+     */
+    protected function setUp()
+    {
+        $this->instance = new EventImmutable('test');
+    }
 }

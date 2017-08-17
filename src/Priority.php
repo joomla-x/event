@@ -15,20 +15,20 @@ namespace Joomla\Event;
  */
 final class Priority
 {
-	const MIN = -3;
-	const LOW = -2;
-	const BELOW_NORMAL = -1;
-	const NORMAL = 0;
-	const ABOVE_NORMAL = 1;
-	const HIGH = 2;
-	const MAX = 3;
+    const MIN          = -3;
+    const LOW          = -2;
+    const BELOW_NORMAL = -1;
+    const NORMAL       = 0;
+    const ABOVE_NORMAL = 1;
+    const HIGH         = 2;
+    const MAX          = 3;
 
-	/**
-	 * Disallow instantiation of this class
-	 *
-	 * @since   1.0
-	 */
-	private function __construct()
-	{
-	}
+    /**
+     * Disallow instantiation of this class
+     *
+     * @since   1.0
+     */
+    private function __construct()
+    {
+    }
 }

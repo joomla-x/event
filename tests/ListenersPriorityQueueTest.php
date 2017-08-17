@@ -17,253 +17,250 @@ use PHPUnit\Framework\TestCase;
  */
 class ListenersPriorityQueueTest extends TestCase
 {
-	/**
-	 * Object under tests.
-	 *
-	 * @var    ListenersPriorityQueue
-	 *
-	 * @since  1.0
-	 */
-	private $instance;
+    /**
+     * Object under tests.
+     *
+     * @var    ListenersPriorityQueue
+     *
+     * @since  1.0
+     */
+    private $instance;
 
-	/**
-	 * Test the add method.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	public function testAdd()
-	{
-		$listener = function() {
+    /**
+     * Test the add method.
+     *
+     * @return  void
+     *
+     * @since   1.0
+     */
+    public function testAdd()
+    {
+        $listener = function () {
 
-		};
+        };
 
-		$this->instance->add($listener, 0);
+        $this->instance->add($listener, 0);
 
-		$this->assertTrue($this->instance->has($listener));
-		$this->assertEquals(0, $this->instance->getPriority($listener));
-	}
+        $this->assertTrue($this->instance->has($listener));
+        $this->assertEquals(0, $this->instance->getPriority($listener));
+    }
 
-	/**
-	 * Test adding an existing listener will have no effect.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	public function testAddExisting()
-	{
-		$listener = function() {
+    /**
+     * Test adding an existing listener will have no effect.
+     *
+     * @return  void
+     *
+     * @since   1.0
+     */
+    public function testAddExisting()
+    {
+        $listener = function () {
 
-		};
+        };
 
-		$this->instance->add($listener, 5);
-		$this->instance->add($listener, 0);
+        $this->instance->add($listener, 5);
+        $this->instance->add($listener, 0);
 
-		$this->assertTrue($this->instance->has($listener));
-		$this->assertEquals(5, $this->instance->getPriority($listener));
-	}
+        $this->assertTrue($this->instance->has($listener));
+        $this->assertEquals(5, $this->instance->getPriority($listener));
+    }
 
-	/**
-	 * Test the getPriority method when the listener wasn't added.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	public function testGetPriorityNonExisting()
-	{
-		$listener = function() {
+    /**
+     * Test the getPriority method when the listener wasn't added.
+     *
+     * @return  void
+     *
+     * @since   1.0
+     */
+    public function testGetPriorityNonExisting()
+    {
+        $listener = function () {
 
-		};
+        };
 
-		$this->assertNull($this->instance->getPriority($listener));
+        $this->assertNull($this->instance->getPriority($listener));
 
-		$this->assertFalse(
-			$this->instance->getPriority(
-				function () {
+        $this->assertFalse(
+            $this->instance->getPriority(
+                function () {
 
-				},
-				false
-			)
-		);
-	}
+                },
+                false
+            )
+        );
+    }
 
-	/**
-	 * Test the remove method.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	public function testRemove()
-	{
-		$listener1 = function() {
+    /**
+     * Test the remove method.
+     *
+     * @return  void
+     *
+     * @since   1.0
+     */
+    public function testRemove()
+    {
+        $listener1 = function () {
 
-		};
+        };
 
-		$listener2 = function() {
-			return false;
-		};
+        $listener2 = function () {
+            return false;
+        };
 
-		$this->instance->add($listener1, 0);
+        $this->instance->add($listener1, 0);
 
-		// Removing a non existing listener has no effect.
-		$this->instance->remove($listener2);
+        // Removing a non existing listener has no effect.
+        $this->instance->remove($listener2);
 
-		$this->assertTrue($this->instance->has($listener1));
+        $this->assertTrue($this->instance->has($listener1));
 
-		$this->instance->add($listener2, 0);
+        $this->instance->add($listener2, 0);
 
-		$this->assertTrue($this->instance->has($listener1));
-		$this->assertTrue($this->instance->has($listener2));
+        $this->assertTrue($this->instance->has($listener1));
+        $this->assertTrue($this->instance->has($listener2));
 
-		$this->instance->remove($listener1);
+        $this->instance->remove($listener1);
 
-		$this->assertFalse($this->instance->has($listener1));
-		$this->assertTrue($this->instance->has($listener2));
+        $this->assertFalse($this->instance->has($listener1));
+        $this->assertTrue($this->instance->has($listener2));
 
-		$this->instance->remove($listener2);
+        $this->instance->remove($listener2);
 
-		$this->assertFalse($this->instance->has($listener1));
-		$this->assertFalse($this->instance->has($listener2));
-	}
+        $this->assertFalse($this->instance->has($listener1));
+        $this->assertFalse($this->instance->has($listener2));
+    }
 
-	/**
-	 * Test the getAll method.
-	 * All listeners with the same priority must be sorted in the order
-	 * they were added.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	public function testGetAll()
-	{
-		$this->assertEmpty($this->instance->getAll());
+    /**
+     * Test the getAll method.
+     * All listeners with the same priority must be sorted in the order
+     * they were added.
+     *
+     * @return  void
+     *
+     * @since   1.0
+     */
+    public function testGetAll()
+    {
+        $this->assertEmpty($this->instance->getAll());
 
-		$listener0 = function() {
+        $listener0 = function () {
 
-		};
+        };
 
-		$listener1 = function() {
-			return false;
-		};
+        $listener1 = function () {
+            return false;
+        };
 
-		$this->instance->add($listener0, 10);
-		$this->instance->add($listener1, 3);
+        $this->instance->add($listener0, 10);
+        $this->instance->add($listener1, 3);
 
-		$listeners = $this->instance->getAll();
+        $listeners = $this->instance->getAll();
 
-		$this->assertSame($listeners[0], $listener0);
-		$this->assertSame($listeners[1], $listener1);
-	}
+        $this->assertSame($listeners[0], $listener0);
+        $this->assertSame($listeners[1], $listener1);
+    }
 
-	/**
-	 * Test the getIterator method.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	public function testGetIterator()
-	{
-		$listener0 = function() {
+    /**
+     * Test the getIterator method.
+     *
+     * @return  void
+     *
+     * @since   1.0
+     */
+    public function testGetIterator()
+    {
+        $listener0 = function () {
 
-		};
+        };
 
-		$listener1 = function() {
-			return false;
-		};
+        $listener1 = function () {
+            return false;
+        };
 
-		$this->instance->add($listener0, 10);
-		$this->instance->add($listener1, 3);
+        $this->instance->add($listener0, 10);
+        $this->instance->add($listener1, 3);
 
-		$listeners = array();
+        $listeners = [];
 
-		foreach ($this->instance as $listener)
-		{
-			$listeners[] = $listener;
-		}
+        foreach ($this->instance as $listener) {
+            $listeners[] = $listener;
+        }
 
-		$this->assertSame($listeners[0], $listener0);
-		$this->assertSame($listeners[1], $listener1);
-	}
+        $this->assertSame($listeners[0], $listener0);
+        $this->assertSame($listeners[1], $listener1);
+    }
 
-	/**
-	 * Test that ListenersPriorityQueue is not a heap.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	public function testGetIteratorMultipleIterations()
-	{
-		$listener0 = function() {
+    /**
+     * Test that ListenersPriorityQueue is not a heap.
+     *
+     * @return  void
+     *
+     * @since   1.0
+     */
+    public function testGetIteratorMultipleIterations()
+    {
+        $listener0 = function () {
 
-		};
+        };
 
-		$listener1 = function() {
-			return false;
-		};
+        $listener1 = function () {
+            return false;
+        };
 
-		$this->instance->add($listener0, 0);
-		$this->instance->add($listener1, 1);
+        $this->instance->add($listener0, 0);
+        $this->instance->add($listener1, 1);
 
-		$firstListeners = array();
+        $firstListeners = [];
 
-		foreach ($this->instance as $listener)
-		{
-			$firstListeners[] = $listener;
-		}
+        foreach ($this->instance as $listener) {
+            $firstListeners[] = $listener;
+        }
 
-		$secondListeners = array();
+        $secondListeners = [];
 
-		foreach ($this->instance as $listener)
-		{
-			$secondListeners[] = $listener;
-		}
+        foreach ($this->instance as $listener) {
+            $secondListeners[] = $listener;
+        }
 
-		$this->assertSame($firstListeners, $secondListeners);
-	}
+        $this->assertSame($firstListeners, $secondListeners);
+    }
 
-	/**
-	 * Test the count method.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	public function testCount()
-	{
-		$this->assertCount(0, $this->instance);
+    /**
+     * Test the count method.
+     *
+     * @return  void
+     *
+     * @since   1.0
+     */
+    public function testCount()
+    {
+        $this->assertCount(0, $this->instance);
 
-		$listener1 = function() {
+        $listener1 = function () {
 
-		};
+        };
 
-		$listener2 = function() {
-			return false;
-		};
+        $listener2 = function () {
+            return false;
+        };
 
-		$this->instance->add($listener1, 0);
-		$this->instance->add($listener2, 0);
+        $this->instance->add($listener1, 0);
+        $this->instance->add($listener2, 0);
 
-		$this->assertCount(2, $this->instance);
-	}
+        $this->assertCount(2, $this->instance);
+    }
 
-	/**
-	 * Sets up the fixture.
-	 *
-	 * This method is called before a test is executed.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	protected function setUp()
-	{
-		$this->instance = new ListenersPriorityQueue;
-	}
+    /**
+     * Sets up the fixture.
+     *
+     * This method is called before a test is executed.
+     *
+     * @return  void
+     *
+     * @since   1.0
+     */
+    protected function setUp()
+    {
+        $this->instance = new ListenersPriorityQueue;
+    }
 }
