@@ -1,4 +1,4 @@
-# The Event Package [![Build Status](https://travis-ci.org/joomla-framework/event.png?branch=master)](https://travis-ci.org/joomla-framework/event)
+# The Event Package [![Build Status](https://travis-ci.org/joomla-x/event.png?branch=3.0-dev)](https://travis-ci.org/joomla-framework/event)
 
 The event package provides foundations to build event systems and an implementation supporting prioritized listeners.
 
@@ -373,12 +373,12 @@ This is useful when you want to make sure that 3rd party applications, won't reg
 
 ## Installation via Composer
 
-Add `"joomla/event": "2.0.*@dev"` to the require block in your composer.json and then run `composer install`.
+Add `"joomla-x/event": "3.0.*@dev"` to the require block in your composer.json and then run `composer install`.
 
 ```json
 {
 	"require": {
-		"joomla/event": "2.0.*@dev"
+		"joomla-x/event": "3.0.*@dev"
 	}
 }
 ```
@@ -386,5 +386,5 @@ Add `"joomla/event": "2.0.*@dev"` to the require block in your composer.json and
 Alternatively, you can simply run the following from the command line:
 
 ```sh
-composer require joomla/event "2.0.*@dev"
+composer require joomla-x/event "3.0.*@dev"
 ```

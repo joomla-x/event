@@ -1,5 +1,5 @@
 {
-    "name": "joomla/event",
+    "name": "joomla-x/event",
     "type": "joomla-package",
     "description": "Joomla Event Package",
     "keywords": ["joomla", "framework", "event"],
@@ -24,7 +24,7 @@
     },
     "extra": {
         "branch-alias": {
-	        "dev-2.0-dev": "2.0-dev"
+	        "dev-3.0-dev": "3.0-dev"
         }
     }
 }
