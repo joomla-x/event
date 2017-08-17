@@ -42,11 +42,11 @@ final class DelegatingDispatcher implements DispatcherInterface
 	 * @param   callable  $callback   A callable function
 	 * @param   integer   $priority   The priority at which the $callback executed
 	 *
-	 * @return  boolean
+	 * @return  DispatcherInterface
 	 *
 	 * @since   __DEPLOY_VERSION__
 	 */
-	public function addListener(string $eventName, callable $callback, int $priority = 0): bool
+	public function addListener(string $eventName, callable $callback, int $priority = 0): DispatcherInterface
 	{
 		return $this->dispatcher->addListener($eventName, $callback, $priority);
 	}
@@ -72,26 +72,12 @@ final class DelegatingDispatcher implements DispatcherInterface
 	 * @param   string    $eventName  The event to remove a listener from.
 	 * @param   callable  $listener   The listener to remove.
 	 *
-	 * @return  void
+	 * @return  DispatcherInterface
 	 *
 	 * @since   __DEPLOY_VERSION__
 	 */
-	public function removeListener(string $eventName, callable $listener)
+	public function removeListener(string $eventName, callable $listener): DispatcherInterface
 	{
-		$this->dispatcher->removeListener($eventName, $listener);
-	}
-
-	/**
-	 * Trigger an event.
-	 *
-	 * @param   EventInterface|string  $event  The event object or name.
-	 *
-	 * @return  EventInterface  The event after being passed through all listeners.
-	 *
-	 * @since   1.0
-	 */
-	public function triggerEvent($event)
-	{
-		return $this->dispatcher->triggerEvent($event);
+		return $this->dispatcher->removeListener($eventName, $listener);
 	}
 }

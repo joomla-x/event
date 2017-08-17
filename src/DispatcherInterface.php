@@ -22,11 +22,11 @@ interface DispatcherInterface
 	 * @param   callable  $callback   A callable function.
 	 * @param   integer   $priority   The priority at which the $callback executed.
 	 *
-	 * @return  boolean
+	 * @return  $this
 	 *
 	 * @since   __DEPLOY_VERSION__
 	 */
-	public function addListener(string $eventName, callable $callback, int $priority = 0): bool;
+	public function addListener(string $eventName, callable $callback, int $priority = 0): DispatcherInterface;
 
 	/**
 	 * Dispatches an event to all registered listeners.
@@ -48,9 +48,9 @@ interface DispatcherInterface
 	 * @param   string    $eventName  The event to remove a listener from.
 	 * @param   callable  $listener   The listener to remove.
 	 *
-	 * @return  void
+	 * @return  $this
 	 *
 	 * @since   __DEPLOY_VERSION__
 	 */
-	public function removeListener(string $eventName, callable $listener);
+	public function removeListener(string $eventName, callable $listener): DispatcherInterface;
 }

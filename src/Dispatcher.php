@@ -8,6 +8,9 @@
 
 namespace Joomla\Event;
 
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\NullLogger;
+
 /**
  * Implementation of a DispatcherInterface supporting prioritized listeners.
  *
@@ -30,6 +33,16 @@ class Dispatcher implements DispatcherInterface
 	 * @since  1.0
 	 */
 	protected $listeners = [];
+
+	use LoggerAwareTrait;
+
+	/**
+	 * Dispatcher constructor.
+	 */
+	public function __construct()
+	{
+		$this->setLogger(new NullLogger);
+	}
 
 	/**
 	 * Set an event to the dispatcher. It will replace any event with the same name.
@@ -175,11 +188,11 @@ class Dispatcher implements DispatcherInterface
 	 * @param   callable  $callback   A callable function
 	 * @param   integer   $priority   The priority at which the $callback executed
 	 *
-	 * @return  boolean
+	 * @return  $this
 	 *
 	 * @since   1.0
 	 */
-	public function addListener(string $eventName, callable $callback, int $priority = 0): bool
+	public function addListener(string $eventName, callable $callback, int $priority = 0): DispatcherInterface
 	{
 		if (!isset($this->listeners[$eventName]))
 		{
@@ -188,7 +201,7 @@ class Dispatcher implements DispatcherInterface
 
 		$this->listeners[$eventName]->add($callback, $priority);
 
-		return true;
+		return $this;
 	}
 
 	/**
@@ -271,16 +284,18 @@ class Dispatcher implements DispatcherInterface
 	 * @param   string    $eventName  The event to remove a listener from.
 	 * @param   callable  $listener   The listener to remove.
 	 *
-	 * @return  void
+	 * @return  $this
 	 *
 	 * @since   __DEPLOY_VERSION__
 	 */
-	public function removeListener(string $eventName, callable $listener)
+	public function removeListener(string $eventName, callable $listener): DispatcherInterface
 	{
 		if (isset($this->listeners[$eventName]))
 		{
 			$this->listeners[$eventName]->remove($listener);
 		}
+
+		return $this;
 	}
 
 	/**
@@ -403,27 +418,9 @@ class Dispatcher implements DispatcherInterface
 			}
 		}
 
+		$this->logger->debug(__METHOD__ . ": Done.");
+
 		return $event;
-	}
-
-	/**
-	 * Trigger an event.
-	 *
-	 * @param   EventInterface|string  $event  The event object or name.
-	 *
-	 * @return  EventInterface  The event after being passed through all listeners.
-	 *
-	 * @since   1.0
-	 * @deprecated  3.0  Use dispatch() instead.
-	 */
-	public function triggerEvent($event)
-	{
-		if (!($event instanceof EventInterface))
-		{
-			$event = $this->getDefaultEvent($event);
-		}
-
-		return $this->dispatch($event->getName(), $event);
 	}
 
 	/**
