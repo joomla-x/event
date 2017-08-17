@@ -3,7 +3,7 @@
     "type": "joomla-package",
     "description": "Joomla Event Package",
     "keywords": ["joomla", "framework", "event"],
-    "homepage": "https://github.com/joomla-framework/event",
+    "homepage": "https://github.com/joomla-x/event",
     "license": "GPL-2.0+",
     "require": {
         "php": "~7.0",
@@ -25,7 +25,7 @@
     },
     "extra": {
         "branch-alias": {
-	        "dev-3.0-dev": "3.0-dev"
+            "dev-3.0-dev": "3.0-dev"
         }
     }
 }

@@ -52,19 +52,6 @@ class Event extends AbstractEvent
     }
 
     /**
-     * Stop the event propagation.
-     *
-     * @return  void
-     *
-     * @since       1.0
-     * @deprecated  3.0  Use stopPropogation instead
-     */
-    public function stop()
-    {
-        $this->stopPropagation();
-    }
-
-    /**
      * Set the value of an event argument.
      *
      * @param   string $name  The argument name.

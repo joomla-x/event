@@ -11,11 +11,7 @@ use Joomla\Event\Event;
 use Joomla\Event\EventInterface;
 use Joomla\Event\EventImmutable;
 use Joomla\Event\Priority;
-use Joomla\Event\Tests\Stubs\EmptyListener;
-use Joomla\Event\Tests\Stubs\FirstListener;
-use Joomla\Event\Tests\Stubs\SecondListener;
 use Joomla\Event\Tests\Stubs\SomethingListener;
-use Joomla\Event\Tests\Stubs\ThirdListener;
 use PHPUnit\Framework\TestCase;
 
 /**

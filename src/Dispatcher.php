@@ -167,7 +167,7 @@ class Dispatcher implements DispatcherInterface
     /**
      * Count the number of registered event.
      *
-     * @return  integer  The numer of registered events.
+     * @return  integer  The number of registered events.
      *
      * @since   1.0
      */
@@ -298,6 +298,8 @@ class Dispatcher implements DispatcherInterface
                 $this->addListener($eventName, [$subscriber, $params]);
             }
         }
+
+        return $this;
     }
 
     /**
@@ -307,7 +309,7 @@ class Dispatcher implements DispatcherInterface
      * @param   callable $callback  A callable function
      * @param   integer  $priority  The priority at which the $callback executed
      *
-     * @return  $this
+     * @return  DispatcherInterface $this
      *
      * @since   1.0
      */
@@ -348,7 +350,7 @@ class Dispatcher implements DispatcherInterface
      * @param   string   $eventName The event to remove a listener from.
      * @param   callable $listener  The listener to remove.
      *
-     * @return  $this
+     * @return  DispatcherInterface $this
      *
      * @since   __DEPLOY_VERSION__
      */

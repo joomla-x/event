@@ -96,7 +96,7 @@ class EventTest extends TestCase
     }
 
     /**
-     * Test the setArgument method when the argument already exists, it should be overriden.
+     * Test the setArgument method when the argument already exists, it should be overridden.
      *
      * @return  void
      *
@@ -169,7 +169,7 @@ class EventTest extends TestCase
     {
         $this->assertFalse($this->instance->isStopped());
 
-        $this->instance->stop();
+        $this->instance->stopPropagation();
 
         $this->assertTrue($this->instance->isStopped());
     }

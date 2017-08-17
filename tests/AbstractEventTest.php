@@ -122,7 +122,7 @@ class AbstractEventTest extends TestCase
 
     /**
      * Test the isStopped method.
-     * An immutable event shoudln't be stopped, otherwise it won't trigger.
+     * An immutable event shouldn't be stopped, otherwise it won't trigger.
      *
      * @return  void
      *

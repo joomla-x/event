@@ -126,8 +126,6 @@ class ListenersPriorityQueue implements \IteratorAggregate, \Countable
             return [];
         }
 
-        $sorted = [];
-
         krsort($this->listeners);
 
         $sorted = call_user_func_array('array_merge', $this->listeners);
