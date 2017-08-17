@@ -15,14 +15,14 @@ namespace Joomla\Event;
  */
 interface DispatcherAwareInterface
 {
-	/**
-	 * Set the dispatcher to use.
-	 *
-	 * @param   DispatcherInterface  $dispatcher  The dispatcher to use.
-	 *
-	 * @return  DispatcherAwareInterface  This method is chainable.
-	 *
-	 * @since   1.0
-	 */
-	public function setDispatcher(DispatcherInterface $dispatcher);
+    /**
+     * Set the dispatcher to use.
+     *
+     * @param   DispatcherInterface $dispatcher The dispatcher to use.
+     *
+     * @return  DispatcherAwareInterface  This method is chainable.
+     *
+     * @since   1.0
+     */
+    public function setDispatcher(DispatcherInterface $dispatcher);
 }

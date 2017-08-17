@@ -2,18 +2,18 @@
 /**
  * Part of the Joomla Framework Event Package
  *
- * @copyright  Copyright (C) 2005 - 2016 Open Source Matters, Inc. All rights reserved.
+ * @copyright  Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
 namespace Joomla\Event;
 
 /**
- * Interface for event dispatchers.
+ * Implementation of a DispatcherInterface which is doing nothing.
  *
  * @since  1.0
  */
-interface DispatcherInterface
+class NullDispatcher implements DispatcherInterface
 {
     /**
      * Attaches a listener to an event
@@ -22,11 +22,14 @@ interface DispatcherInterface
      * @param   callable $callback  A callable function.
      * @param   integer  $priority  The priority at which the $callback executed.
      *
-     * @return  $this
+     * @return  DispatcherInterface
      *
      * @since   __DEPLOY_VERSION__
      */
-    public function addListener(string $eventName, callable $callback, int $priority = 0): DispatcherInterface;
+    public function addListener(string $eventName, callable $callback, int $priority = 0): DispatcherInterface
+    {
+        return $this;
+    }
 
     /**
      * Dispatches an event to all registered listeners.
@@ -40,7 +43,10 @@ interface DispatcherInterface
      *
      * @since   __DEPLOY_VERSION__
      */
-    public function dispatch(string $name, EventInterface $event = null): EventInterface;
+    public function dispatch(string $name, EventInterface $event = null): EventInterface
+    {
+        return $event;
+    }
 
     /**
      * Removes an event listener from the specified event.
@@ -48,9 +54,12 @@ interface DispatcherInterface
      * @param   string   $eventName The event to remove a listener from.
      * @param   callable $listener  The listener to remove.
      *
-     * @return  $this
+     * @return  DispatcherInterface
      *
      * @since   __DEPLOY_VERSION__
      */
-    public function removeListener(string $eventName, callable $listener): DispatcherInterface;
+    public function removeListener(string $eventName, callable $listener): DispatcherInterface
+    {
+        return $this;
+    }
 }
