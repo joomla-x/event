@@ -5,6 +5,11 @@
     "keywords": ["joomla", "framework", "event"],
     "homepage": "https://github.com/joomla-x/event",
     "license": "GPL-2.0+",
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        }
+    },
     "require": {
         "php": "~7.0",
         "psr/log": "^1.0"
